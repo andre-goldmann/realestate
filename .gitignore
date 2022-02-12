@@ -3,6 +3,7 @@
 .settings
 .project
 .classpath
+.npmrc
 
 *.iml
 .DS_Store
@@ -12,6 +13,7 @@ node_modules/
 frontend/generated/
 pnpmfile.js
 vite.generated.ts
+pnpm-lock.yaml
 
 # Browser drivers for local integration tests
 drivers/
