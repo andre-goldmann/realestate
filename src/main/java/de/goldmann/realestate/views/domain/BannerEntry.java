@@ -3,7 +3,7 @@
  * Copyright (c) Saxess AG. All rights reserved.
  */
 
-package de.goldmann.realestate.views.components;
+package de.goldmann.realestate.views.domain;
 
 /**
  * @author Andre Goldmann
