@@ -16,10 +16,8 @@ public final class TypeParameter<T> {
     private String url;
 
     public TypeParameter(final Class<T> type, final String url) {
-        Objects.requireNonNull(type);
-        Objects.requireNonNull(url);
-        this.type = type;
-        this.url = url;
+        this.type = Objects.requireNonNull(type);
+        this.url = Objects.requireNonNull(url);
     }
 
     public Class<T> getType() {

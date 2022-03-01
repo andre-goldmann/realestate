@@ -12,6 +12,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import de.goldmann.realestate.data.domain.TypeParameter;
 import de.goldmann.realestate.data.service.RealEstateService;
 
+import java.util.Objects;
+
 /**
  * @author Andre Goldmann
  */
@@ -24,6 +26,8 @@ public class ProviderCard extends VerticalLayout{
     public ProviderCard(
         final RealEstateService realEstateService,
         final TypeParameter typeParameter) {
+        Objects.requireNonNull(realEstateService);
+        Objects.requireNonNull(typeParameter);
         this.totalAmountOfPages = realEstateService.getPageCount(this.itemsPerPage, typeParameter);
         final ResultCard grid = new ResultCard(realEstateService,
                                                this.currentPageNumber,

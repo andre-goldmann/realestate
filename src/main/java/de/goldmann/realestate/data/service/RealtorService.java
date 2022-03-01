@@ -15,7 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.stream.Collectors;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -27,8 +27,8 @@ public class RealtorService implements RealEstateService{
     private final Logger logger = LoggerFactory.getLogger(RealtorService.class);
     private final RealtorCardRepository realtorCardRepository;
 
-    public RealtorService(RealtorCardRepository realtorCardRepository) {
-        this.realtorCardRepository = realtorCardRepository;
+    public RealtorService(final RealtorCardRepository realtorCardRepository) {
+        this.realtorCardRepository = Objects.requireNonNull(realtorCardRepository);
     }
 
     @Transactional(readOnly = true)
@@ -36,14 +36,8 @@ public class RealtorService implements RealEstateService{
                                       final int totalAmountOfPages,
                                       final int itemsPerPage,
                                       final TypeParameter typeParameter) {
+        Objects.requireNonNull(typeParameter);
         final PageRequest pageRequest = PageRequest.of(currentPageNumber, itemsPerPage);
-//        Stream<RealestateData> realtorData = this.realtorCardRepository.findForWebsite(
-//            typeParameter, pageRequest);
-//        System.out.println("data="+realtorData.collect(Collectors.toList()));
-//
-//        Stream<CiencuadrasData> ciencuadrasData = this.realtorCardRepository.findForWebsite(
-//            new TypeParameter<>(CiencuadrasData.class), pageRequest);
-//        System.out.println("ciencuadrasData="+ciencuadrasData.count());
 
         final Stream<RealestateData> dataFromDb = this.realtorCardRepository.findForWebsite(typeParameter, pageRequest);
         final Stream.Builder<GridData> builder = Stream.builder();
@@ -56,7 +50,8 @@ public class RealtorService implements RealEstateService{
     @Transactional(readOnly = true)
     public int getPageCount(int itemsPerPage,
                             TypeParameter<RealestateData> typeParameter) {
-        final long count = this.realtorCardRepository.countForWebsite(typeParameter).count();//this.realtorCardRepository.count();
+        Objects.requireNonNull(typeParameter);
+        final long count = this.realtorCardRepository.countForWebsite(typeParameter).count();
         logger.info("Found {} items, resulting in a pageCount of {} ", count, (int) (count/itemsPerPage));
         return (int) (count/itemsPerPage);
     }

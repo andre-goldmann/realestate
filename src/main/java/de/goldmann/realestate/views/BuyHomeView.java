@@ -8,7 +8,6 @@ package de.goldmann.realestate.views;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.NativeButton;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -20,6 +19,8 @@ import de.goldmann.realestate.jms.Producer;
 import de.goldmann.realestate.views.components.ProviderCard;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 import javax.annotation.security.PermitAll;
 
@@ -36,6 +37,8 @@ public class BuyHomeView extends VerticalLayout {
     public BuyHomeView(
         final Producer producer,
         final RealtorService realestateService) {
+        Objects.requireNonNull(realestateService);
+        Objects.requireNonNull(producer);
 
         final NativeButton button = new NativeButton("Back");
             button.addClickListener(e -> button.getUI().ifPresent(ui -> ui.navigate(""))

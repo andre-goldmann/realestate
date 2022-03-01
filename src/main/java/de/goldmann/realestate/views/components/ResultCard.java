@@ -17,6 +17,8 @@ import de.goldmann.realestate.data.domain.GridData;
 import de.goldmann.realestate.data.domain.TypeParameter;
 import de.goldmann.realestate.data.service.RealEstateService;
 
+import java.util.Objects;
+
 /**
  * @author Andre Goldmann
  */
@@ -32,6 +34,8 @@ public class ResultCard extends Grid<GridData> {
                       final int totalAmountOfPages,
                       final int itemsPerPage,
                       final TypeParameter typeParameter) {
+        Objects.requireNonNull(realEstateService);
+        Objects.requireNonNull(typeParameter);
         setPageSize(itemsPerPage);
 
         addColumn(createEmployeeRenderer()).setHeader("Estate");

@@ -26,6 +26,8 @@ public class GridData {
     }
 
     public GridData(final RealestateData data, String website) {
+        Objects.requireNonNull(data);
+        Objects.requireNonNull(website);
         this.website = website;
         Objects.requireNonNull(data);
         this.id = Objects.requireNonNull(data.getId());
