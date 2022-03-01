@@ -25,8 +25,8 @@ public class ImageUrl {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "card_id")
-    private RealtorCard card;
+    @JoinColumn(name = "data_id")
+    private RealestateData data;
 
     private String url;
 
@@ -37,8 +37,8 @@ public class ImageUrl {
         return id;
     }
 
-    public RealtorCard getCard() {
-        return card;
+    public RealestateData getData() {
+        return data;
     }
 
     public String getUrl() {
